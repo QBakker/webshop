@@ -1,0 +1,46 @@
+// Fonts
+@import url('https://fonts.googleapis.com/css?family=Nunito');
+
+// Variables
+@import 'variables';
+
+// Bootstrap
+@import '~bootstrap/scss/bootstrap';
+
+tr.custom-table {
+    >td {
+        vertical-align: middle;
+    }
+}
+
+td.table-img {
+    width: 150px;
+
+    >img {
+        width: 100%;
+    }
+}
+
+.product-img {
+    max-width: 100%;
+}
+
+.custom-card {
+    min-height: 50vh;
+    
+    max-height: 50vh;
+    max-width: 22rem;
+    
+    cursor: pointer;
+    transition: linear .1s;
+    
+    & >img {
+        max-width: 95%;
+        max-height: 25vh;
+        margin: auto;
+    }
+
+    &:hover {
+        transform: scale(1.05);
+    }
+}
