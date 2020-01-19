@@ -11360,12 +11360,8 @@ tr.custom-table > td {
   vertical-align: middle;
 }
 
-td.table-img {
-  width: 150px;
-}
-
 td.table-img > img {
-  width: 100%;
+  width: 150px;
 }
 
 .product-img {
@@ -11390,5 +11386,18 @@ td.table-img > img {
 .custom-card:hover {
   -webkit-transform: scale(1.05);
           transform: scale(1.05);
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+.row-highlight {
+  -webkit-transition: 0.1s;
+  transition: 0.1s;
+}
+
+.row-highlight:hover {
+  background-color: rgba(255, 255, 255, 0.5) !important;
 }
 

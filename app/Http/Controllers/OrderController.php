@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Order;
+use App\Product;
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
@@ -15,13 +16,31 @@ class OrderController extends Controller
      */
     public function index()
     {
-        $orders = Order::all();
+        $orders = auth()->user()->orders;
 
-        foreach ($orders as $order) {
+        return view('order.index')->with([
+            'orders' => $orders,
+        ]);
+    }
 
-            // json_decode zet de string weer om in een array.
-            $items = json_decode($order->items);
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create(Request $request)
+    {
+        $items = $request->session()->get('cart_items');
+
+        foreach ($items as &$item) {
+            $item['product'] = Product::find($item['id']);
+
+            unset($item);
         }
+
+        return view('order.create')->with([
+            'items' => $items,
+        ]);
     }
 
     /**
@@ -32,26 +51,35 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
-        $items = $request->session()->get('cart_items');
-        $order = [];
-
-        // json_encode veranderd de array zoals:
-        // $items = [
-        //     ['productID' => 5, 'amount' => 2],
-        //     ['productID' => 6, 'amount' => 1]
-        // ];
-
-        // in een string:
-        // $items = '[{productID:5,amount:2},{productID:6,amount:1}]';
-
         
-        // Vervolgens kan je het opslaan in een test kolom.
-        $order->items = json_encode($items);
-
-        return view('order.index', [
-            'items' => $items, 
-            'order' => $order
+        $validated = $this->validate($request, [
+            'address' => 'required|string',
+            'housenumber' => 'required|string',
+            'zipcode' => 'required|string',
+            'residence' => 'required|string',
+            
             ]);
+            
+        $order = new Order();
+
+        $order->address = $validated['address'];
+        $order->housenumber = $validated['housenumber'];
+        $order->zipcode = $validated['zipcode'];
+        $order->residence = $validated['residence'];
+
+        auth()->user()->orders()->save($order);
+
+        $items = $request->session()->get('cart_items');
+        foreach ($items as $item) {
+            $order->products()->attach(
+                $item['id'], 
+                ['amount' => $item['amount']
+            ]);
+        }
+
+        $request->session()->put('cart_items', []);
+
+        return redirect()->route('order.show', ['order' => $order]);
     }
 
     /**
@@ -62,7 +90,9 @@ class OrderController extends Controller
      */
     public function show(Order $order)
     {
-        // 
+        return view('order.show')->with([
+            'order' => $order,
+        ]);
     }
 
     /**

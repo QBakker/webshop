@@ -2,23 +2,14 @@
 
 namespace App;
 
-use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Product extends Model
 {
-    use SoftDeletes;
 
-    public static function getProductsByBrand()
+    public function getTotalPriceAttribute()
     {
-        $products = DB::table('products')
-                    ->rightJoin('categories', 'products.category_id', '=', 'categories.id')
-                    ->select('products.*')
-                    ->whereNotNull('products.category_id')
-                    ->get();
-        
-        return $products;
+        return $this->price * $this->pivot->amount;
     }
 
     public function categories()

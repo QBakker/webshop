@@ -38,13 +38,13 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text" id="addon-wrapping">Straat</span>
                     </div>
-                    <input name="street" type="text" class="form-control" placeholder="Planetenlaan.." aria-label="street" aria-describedby="addon-wrapping">
+                    <input name="address" type="text" class="form-control" placeholder="Planetenlaan.." aria-label="street" aria-describedby="addon-wrapping">
                 </div>
                 <div class="input-group flex-nowrap mb-3">
                     <div class="input-group-prepend">
                         <span class="input-group-text" id="addon-wrapping">Huisnummer</span>
                     </div>
-                    <input name="number" type="number" class="form-control" placeholder="123.." aria-label="house-number" aria-describedby="addon-wrapping">
+                    <input name="housenumber" type="number" class="form-control" placeholder="123.." aria-label="house-number" aria-describedby="addon-wrapping">
                 </div>
                 <div class="input-group flex-nowrap mb-3">
                     <div class="input-group-prepend">
@@ -57,7 +57,7 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text" id="addon-wrapping">Woonplaats</span>
                     </div>
-                    <input name="city" type="text" class="form-control" placeholder="Amsterdam" aria-label="city" aria-describedby="addon-wrapping">
+                    <input name="residence" type="text" class="form-control" placeholder="Amsterdam" aria-label="city" aria-describedby="addon-wrapping">
                 </div>
 
                 <button class="btn btn-outline-primary" type="submit">Ga verder</button>

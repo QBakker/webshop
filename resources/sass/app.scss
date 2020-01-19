@@ -14,10 +14,8 @@ tr.custom-table {
 }
 
 td.table-img {
-    width: 150px;
-
     >img {
-        width: 100%;
+        width: 150px;
     }
 }
 
@@ -42,5 +40,17 @@ td.table-img {
 
     &:hover {
         transform: scale(1.05);
+    }
+}
+
+.pointer {
+    cursor: pointer;
+}
+
+.row-highlight {
+    transition: 0.1s;
+
+    &:hover {
+        background-color: rgba(255, 255, 255, 0.5) !important;
     }
 }
