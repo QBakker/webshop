@@ -1,2 +1,14 @@
 
 resources/views/.DS_Store
+
+ERDWebshop.pdf
+
+ERDWebshop.jpeg
+
+.env.example
+
+.env
+
+.editorconfig
+
+.styleci.yml
