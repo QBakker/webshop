@@ -57,7 +57,7 @@
         @if ( $items != [] )
         <div class="row">
             <div class="col-10 text-white">
-                <h6>Totaal: &euro; {{ number_format($totaal, 2, ',', '.') }}</h6>
+                <h6>Totaal: &euro; {{ number_format($total, 2, ',', '.') }}</h6>
             </div>
             <div class="col-2">
                 <a href="{{ route('order.create') }}" class="btn btn-success text-decoration-none">Bestellen</a>
